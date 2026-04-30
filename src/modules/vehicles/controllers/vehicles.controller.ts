@@ -1,4 +1,25 @@
+<<<<<<< HEAD
 import { Controller } from '@nestjs/common';
 
 @Controller('vehicles')
 export class VehiclesController {}
+=======
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { VehiclesService } from '../services/vehicles.service';
+import { CreateVehicleDto } from '../dto/vehicle.dto';
+
+@Controller('vehicles')
+export class VehiclesController {
+  constructor(private readonly vehiclesService: VehiclesService) {}
+
+  @Get()
+  getVehiclesAll() {
+    return 'Lista de vehiculos';
+  }
+
+  @Post()
+  createVehicle(@Body() createVehicleDto: CreateVehicleDto) {
+    return this.vehiclesService.create(createVehicleDto);
+  }
+}
+>>>>>>> f88a7f3 (firts commit class 4)

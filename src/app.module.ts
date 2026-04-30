@@ -16,8 +16,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
+<<<<<<< HEAD
       synchronize: true
     }),
   ],
+=======
+      synchronize: true,
+    }),
+  ],
+  controllers: [],
+  providers: [],
+>>>>>>> f88a7f3 (firts commit class 4)
 })
 export class AppModule {}

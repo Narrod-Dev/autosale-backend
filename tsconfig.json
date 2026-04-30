@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+=======
+    "module": "commonjs",
+>>>>>>> f88a7f3 (firts commit class 4)
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -13,7 +17,11 @@
     "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
+<<<<<<< HEAD
     //"baseUrl": "./",
+=======
+    // "baseUrl": "./",
+>>>>>>> f88a7f3 (firts commit class 4)
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
