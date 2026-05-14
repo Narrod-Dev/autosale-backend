@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brand } from '../entities/brand.entity';
 import { Repository } from 'typeorm';
-import { CreateBrandDto } from '../dto/brand.dto';
+import { CreateBrandDto, UpdateBrandDto } from '../dto/brand.dto';
 
 @Injectable()
 export class BrandsService {
@@ -28,7 +28,16 @@ export class BrandsService {
         return brand;
     }
 
-    async update() {}
+    async update(id: number, updateBrandDto: UpdateBrandDto): Promise<Brand> {
+        const brand = await this.findOne(id);
+        Object.assign(brand, updateBrandDto);
+        return await this.brandRepository.save(brand);
+    }
 
-    async remove() {}
+    // void se usa para indicar que la función no devuelve ningún valor. En este caso, como la función remove no devuelve ningún valor, es apropiado usar void.
+    // Se cambiara el void a futuro porque necesitaremos un registro
+    async remove(id: number): Promise<void> {
+        const brand = await this.findOne(id);
+        await this.brandRepository.remove(brand);
+    }
 }
