@@ -34,8 +34,9 @@ export class BrandsController {
 
     // Patch se usa para actualizar parcialmente un recurso, mientras que Put se usa para reemplazar completamente un recurso. En este caso, como solo queremos actualizar algunos campos de la marca, es más apropiado usar Patch.
     @Patch(':id')
-    update(@Param('id', ParseIntPipe) id: number,
-    @Body() updateBrandDto: UpdateBrandDto) {
+    update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() updateBrandDto: UpdateBrandDto) {
         return this.brandsService.update(id, updateBrandDto);
     }
 
@@ -43,5 +44,4 @@ export class BrandsController {
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.brandsService.remove(id);
     }
-
 }
