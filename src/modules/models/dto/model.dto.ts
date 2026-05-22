@@ -1,5 +1,11 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
-import { IsInt, IsNotEmpty, IsPositive, IsString, MinLength } from "class-validator";
+import { 
+    IsInt, 
+    IsNotEmpty, 
+    IsPositive, 
+    IsString, 
+    MinLength 
+} from "class-validator";
 
 export class CreateVehicleModelDto {
     @IsInt()

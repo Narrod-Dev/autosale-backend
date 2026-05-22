@@ -1,7 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { ModelsService } from '../services/models.service';
-import { CreateVehicleModelDto } from '../dto/model.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { CreateVehicleModelDto, UpdateVehicleModelDto } from "../dto/model.dto";
 
 @ApiTags('Models')
 @Controller('models')
@@ -11,5 +11,28 @@ export class ModelsController {
     @Post()
     create(@Body() createVehicleModelDto: CreateVehicleModelDto) {
         return this.modelsService.create(createVehicleModelDto);
+    }
+
+    @Get()
+    findAll() {
+        return this.modelsService.findAll()
+    }
+
+    @Get(':id')
+    findOne(@Param('id', ParseIntPipe) id: number) {
+        return this.modelsService.findOne(id);
+    }
+
+    @Patch(':id')
+    update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() updateVehicleDto: UpdateVehicleModelDto,
+    ) {
+        return this.modelsService.update(id, updateVehicleDto);
+    }
+
+    @Delete(':id')
+    remove(@Param('id', ParseIntPipe) id:number) {
+        return this.modelsService.remove(id);
     }
 }
