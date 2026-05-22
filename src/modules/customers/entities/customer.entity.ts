@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    DeleteDateColumn, 
+    Entity, 
+    PrimaryGeneratedColumn, 
+    UpdateDateColumn
+} from "typeorm";
 
 @Entity('customers')
 export class Customer {
@@ -11,24 +18,24 @@ export class Customer {
     @Column({ type: 'varchar', length: 100 })
     last_name: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 50 })
     document_number: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 50 })
     phone: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 100, unique: true })
     email: string;
 
     @Column({ type: 'text' })
     address: string;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updated_at: Date;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @DeleteDateColumn({ type: 'timestamp', nullable: true })
     deleted_at: Date;
 }

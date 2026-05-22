@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Customer } from '../../customers/entities/customer.entity';
 import { Vehicle } from '../../vehicles/entities/vehicle.entity';
 
@@ -13,10 +13,10 @@ export class Sale {
     @Column({ type: 'int4', nullable: true})
     user_id: number;
 
-    @Column({ type: 'int4', nullable: true})
+    @Column({ type: 'int4' })
     vehicle_id: number;
 
-    @Column({ type: 'date' })
+    @Column({ type: 'timestamp' })
     sale_date: Date;
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
@@ -25,10 +25,10 @@ export class Sale {
     @Column({ type: 'varchar', length: 50 })
     payment_method: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 50 })
     status: string;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updated_at: Date;
 
     @ManyToOne(() => Customer, { eager: true })

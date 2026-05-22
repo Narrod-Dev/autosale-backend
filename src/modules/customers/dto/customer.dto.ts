@@ -1,28 +1,32 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
 
 export class CreateCustomerDto {
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
     @ApiProperty({ example: 'John' })
     first_name: string;
 
     @IsString()
     @IsNotEmpty()
+    @MinLength(2)
     @ApiProperty({ example: 'Doe' })
     last_name: string;
 
     @IsString()
     @IsNotEmpty()
+    @MinLength(3)
     @ApiProperty({ example: '123456789' })
     document_number: string;
 
     @IsString()
     @IsNotEmpty()
+    @MinLength(3)
     @ApiProperty({ example: '+1234567890' })
     phone: string;
 
-    @IsString()
+    @IsEmail()
     @IsNotEmpty()
     @ApiProperty({ example: 'john.doe@example.com' })
     email: string;

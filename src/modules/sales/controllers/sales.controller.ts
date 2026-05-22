@@ -6,11 +6,12 @@ import { CreateSaleDto, UpdateSaleDto } from '../dto/sale.dto';
 @ApiTags('Sales')
 @Controller('sales')
 export class SalesController {
-    constructor( private readonly salesService: SalesService) {}
+
+    constructor(private readonly salesService: SalesService) {}
 
     @Post()
-    create( @Body() CreateSaleDto: CreateSaleDto ) {
-        return this.salesService.create(CreateSaleDto);
+        create(@Body() createSaleDto: CreateSaleDto) {
+        return this.salesService.create(createSaleDto);
     }
 
     @Get()
@@ -19,19 +20,20 @@ export class SalesController {
     }
 
     @Get(':id')
-    findOne( @Param( 'id', ParseIntPipe ) id: number ) {
+    findOne(@Param('id', ParseIntPipe) id: number) {
         return this.salesService.findOne(id);
     }
 
     @Patch(':id')
     update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() updateSaleDto: UpdateSaleDto) {
-        return this.salesService.update(id, updateSaleDto as any);
+        @Body() updateSaleDto: UpdateSaleDto,
+    ) {
+        return this.salesService.update(id, updateSaleDto);
     }
 
     @Delete(':id')
-    remove( @Param( 'id', ParseIntPipe ) id: number ) {
+    remove(@Param('id', ParseIntPipe) id: number) {
         return this.salesService.remove(id);
     }
 }
